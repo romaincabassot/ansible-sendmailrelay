@@ -1,0 +1,13 @@
+#################################
+# THIS FILE IS MANAGED BY ANSIBLE
+# DO NOT EDIT LOCALLY
+#################################
+include(`/usr/share/sendmail-cf/m4/cf.m4')dnl
+OSTYPE(`linux')dnl
+FEATURE(local_procmail)dnl
+FEATURE(masquerade_envelope)dnl
+MASQUERADE_AS({{ sendmailrelay_masquerade_as }})dnl
+define(`SMART_HOST', `[{{ sendmailrelay_smarthost }}]')dnl
+define(`RELAY_MAILER_ARGS', `TCP $h {{ sendmailrelay_smarthost_port }}')dnl
+MAILER(local)dnl
+MAILER(smtp)dnl

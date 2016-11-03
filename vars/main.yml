@@ -1,0 +1,4 @@
+---
+sendmailmc_dest_path: '/etc/mail/sendmail.mc'
+sendmailsysconfig_dest_path: '/etc/sysconfig/sendmail'
+sendmailcf_dest_path: '/etc/mail/sendmail.cf'

@@ -1,0 +1,3 @@
+---
+sendmailrelay_smarthost_port: 587
+sendmailrelay_queue_flush_freq: "1m"

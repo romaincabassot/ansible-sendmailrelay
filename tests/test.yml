@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  remote_user: root
+  roles:
+    - {
+        role: sendmailrelay,
+        sendmailrelay_masquerade_as: mydomain.com,
+        sendmailrelay_smarthost: myrelayhost.mydomain.com
+      }

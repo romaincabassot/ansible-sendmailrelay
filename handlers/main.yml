@@ -1,0 +1,7 @@
+---
+- name: Reconfigure sendmail
+  shell: m4 "{{ sendmailmc_dest_path }}" > "{{ sendmailcf_dest_path }}"
+  notify: Restart sendmail
+
+- name: Restart sendmail
+  service: name=sendmail state=restarted

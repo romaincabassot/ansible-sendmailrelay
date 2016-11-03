@@ -1,0 +1,13 @@
+#################################
+# THIS FILE IS MANAGED BY ANSIBLE
+# DO NOT EDIT LOCALLY
+#################################
+{% if ansible_os_family == "RedHat" and ansible_distribution_major_version == "7" %}
+SENDMAIL_OPTS="-q{{ sendmailrelay_queue_flush_freq }}"
+{% endif %}
+{% if ansible_os_family == "RedHat" and ansible_distribution_major_version == "6" %}
+DAEMON=yes
+QUEUE={{ sendmailrelay_queue_flush_freq }}
+{% endif %}
+
+
