@@ -1,0 +1,3 @@
+---
+
+sendmail_mc_include: "/usr/share/sendmail/cf/m4/cf.m4"

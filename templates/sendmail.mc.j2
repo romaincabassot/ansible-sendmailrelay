@@ -2,7 +2,7 @@
 # THIS FILE IS MANAGED BY ANSIBLE
 # DO NOT EDIT LOCALLY
 #################################
-include(`/usr/share/sendmail-cf/m4/cf.m4')dnl
+include(`{{sendmail_mc_include}}')dnl
 OSTYPE(`linux')dnl
 FEATURE(local_procmail)dnl
 FEATURE(masquerade_envelope)dnl
