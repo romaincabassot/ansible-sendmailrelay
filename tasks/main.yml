@@ -3,9 +3,10 @@
   yum: name={{item}} state=present
   with_items:
   - libselinux-python
+  when: ansible_os_family == "RedHat"
 
 - name: Install Sendmail
-  yum: name={{ item }} state=present
+  package: name={{ item }} state=present
   with_items:
     - sendmail
     - sendmail-cf
@@ -13,7 +14,7 @@
 - name: Configure sendmail launch at startup
   service: name=sendmail enabled=yes
 
-- name: Configure sendmail queue flush frequency
+- name: Configure sendmail queue flush frequency (RedHat family)
   template:
      src="sendmail-sysconfig.j2"
      dest="{{ sendmailsysconfig_dest_path }}"
@@ -22,6 +23,13 @@
      mode=0644
      backup=yes
   notify: Restart sendmail
+  when: ansible_os_family == "RedHat"
+  
+- name: Configure sendmail queue flush frequency (Debian family)
+  lineinfile: dest=/etc/init.d/sendmail state=present regexp='^DAEMON_ARGS=' line='DAEMON_ARGS="-q{{sendmailrelay_queue_flush_freq}}"'
+  notify: Restart sendmail
+  when: ansible_os_family == "Debian"
+  
 
 - name: Configure sendmail
   template:
