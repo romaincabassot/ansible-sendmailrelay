@@ -1,6 +1,6 @@
 galaxy_info:
   author: Romain Cabassot
-  #description: your description
+  description: Install Sendmail and configure it to masquerade addresses and relay all messages to another SMTP server.
   #company: your company (optional)
 
   license: BSD
