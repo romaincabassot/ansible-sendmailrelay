@@ -1,9 +1,17 @@
 ---
-- hosts: localhost
-  remote_user: root
+- hosts: all
+
+  pre_tasks:
+  - name: Update apt cache.
+    apt: 
+      update_cache: yes
+      cache_valid_time: 600
+    when: ansible_os_family == 'Debian'
+    changed_when: false
+
   roles:
-    - {
-        role: sendmailrelay,
-        sendmailrelay_masquerade_as: mydomain.com,
-        sendmailrelay_smarthost: myrelayhost.mydomain.com
-      }
+    - role_under_test
+
+  vars: 
+    sendmailrelay_masquerade_as: mydomain.com
+    sendmailrelay_smarthost: myrelayhost.mydomain.com
